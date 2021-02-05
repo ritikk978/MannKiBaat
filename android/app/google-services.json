@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "827518037455",
+    "project_id": "mannkibaat-1f1ef",
+    "storage_bucket": "mannkibaat-1f1ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827518037455:android:6837ea740a94e7933736ba",
+        "android_client_info": {
+          "package_name": "com.gee.mannkibaat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827518037455-pen5cjqlcelmnih94kculm84biahe45p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT-V_Kff36noOYz4LQt12sCMivcf444QA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827518037455-pen5cjqlcelmnih94kculm84biahe45p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
