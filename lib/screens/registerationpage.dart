@@ -8,6 +8,7 @@ import 'file:///C:/Users/Ritik/AndroidStudioProjects/mannkibaat/lib/brand_colors
 import 'package:mannkibaat/screens/loginpage.dart';
 import 'package:mannkibaat/widgets/ProgressDialog.dart';
 import 'package:mannkibaat/widgets/Button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterationPage extends StatefulWidget {
 

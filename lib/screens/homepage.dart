@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:mannkibaat/screens/listingPage.dart';
 import 'package:mannkibaat/widgets/Button.dart';
 
+import 'diarypage.dart';
+
 class HomePage extends StatefulWidget {
   static const String id = 'homepage';
 
@@ -63,6 +65,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           actions: <Widget>[
+
+            Button(
+              title: "Diary",
+              color: Colors.black,
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(context, DiaryPage.id, (route) => false);
+      }
+            ),
             Padding(
                 padding: EdgeInsets.only(right: 20.0),
                 child: GestureDetector(

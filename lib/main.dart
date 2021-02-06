@@ -1,16 +1,20 @@
+import 'package:charts_flutter/flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mannkibaat/screens/diarypage.dart';
 import 'dart:io';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mannkibaat/screens/homepage.dart';
 import 'package:mannkibaat/screens/listingPage.dart';
 import 'package:mannkibaat/screens/loginpage.dart';
 import 'package:mannkibaat/screens/nearestplace.dart';
+import 'package:mannkibaat/screens/recommendation.dart';
 import 'package:mannkibaat/screens/registerationpage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var email = prefs.get('email');
   final FirebaseApp app = await Firebase.initializeApp(
     name: 'db2',
     options: Platform.isIOS || Platform.isMacOS
@@ -33,18 +37,19 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
 
   // This widget is the root of your application.
   @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
   Widget build(BuildContext context) {
-    User firebaseUser = FirebaseAuth.instance.currentUser;
-    Widget homePage;
-    if (firebaseUser != null) {
-      homePage = HomePage();
-    } else {
-      homePage = LoginPage();
-    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'MannKiBaat',
@@ -65,7 +70,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: homePage,
+      home: RegisterationPage(),
       initialRoute: RegisterationPage.id,
       routes: {
         RegisterationPage.id: (context) => RegisterationPage(),
@@ -73,6 +78,8 @@ class MyApp extends StatelessWidget {
         HomePage.id: (context) => HomePage(),
         ListingPage.id: (context) => ListingPage(),
         NearestPlace.id: (context) => NearestPlace(),
+        DiaryPage.id: (context) => DiaryPage(),
+        RecommendationPage.id: (context) => RecommendationPage(),
       },
     );
   }
