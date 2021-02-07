@@ -9,6 +9,7 @@ import 'package:mannkibaat/screens/loginpage.dart';
 import 'package:mannkibaat/screens/nearestplace.dart';
 import 'package:mannkibaat/screens/recommendation.dart';
 import 'package:mannkibaat/screens/registerationpage.dart';
+import 'package:mannkibaat/screens/splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
@@ -70,8 +71,8 @@ class _MyAppState extends State<MyApp> {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: RegisterationPage(),
-      initialRoute: RegisterationPage.id,
+      home: Splash(),
+      initialRoute: Splash.id,
       routes: {
         RegisterationPage.id: (context) => RegisterationPage(),
         LoginPage.id: (context) => LoginPage(),
@@ -79,6 +80,7 @@ class _MyAppState extends State<MyApp> {
         NearestPlace.id: (context) => NearestPlace(),
         DiaryPage.id: (context) => DiaryPage(),
         RecommendationPage.id: (context) => RecommendationPage(),
+        Splash.id : (context)=>Splash(),
       },
     );
   }

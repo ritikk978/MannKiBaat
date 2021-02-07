@@ -112,290 +112,331 @@ class _ListingPageState extends State<ListingPage> {
                 ),
               ),
             ),
+            actions:[
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xffffc478),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 6.0, right: 2),
+                          child: Icon(
+                            Icons.book,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Align(
+                              alignment: Alignment.center,
+                              child: Text('Smart Diary', style: TextStyle(color: Colors.black),)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+            ],
 
           ),
           body: SafeArea(
-            child: Column(
-              children: [
-                SizedBox(height: 20,),
-                Column(
-                  children: [
-                    InkWell(
+            child: Container(
+              color: Color(0xffbbdfc8),
+              child: Column(
+                children: [
+                  SizedBox(height: 20,),
+                  Column(
+                    children: [
+                      InkWell(
 
+                            onTap: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => NearestPlace(nameOfActivity: 'WifiHub',),
+                                  ));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black, width: 3),
+                                  borderRadius: BorderRadius.all(
+                              Radius.circular(5.0) //                 <--- border radius here
+                            ),
+                                  boxShadow: [BoxShadow(blurRadius: 5,color: Color(0xffffc478))]
+                              ),
+
+                              child: Column(
+                                children: [
+                                  Image(
+                                  image: AssetImage('images/WifiHub.png'),
+                                    height: 150,
+                                    width: 250,),
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Text('WifiHub', style: TextStyle(fontSize: 30),),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+
+                    ],
+                  ),
+                  SizedBox(height: 25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: InkWell(
                           onTap: (){
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => NearestPlace(nameOfActivity: 'WifiHub',),
+                                  builder: (context) => NearestPlace(nameOfActivity: 'Theatres',),
                                 ));
                           },
                           child: Container(
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black, width: 3),
                                 borderRadius: BorderRadius.all(
-                            Radius.circular(5.0) //                 <--- border radius here
-                          ),
-                                boxShadow: [BoxShadow(blurRadius: 5,color: Colors.grey)]
+                                    Radius.circular(5.0) //                 <--- border radius here
+                                ),
+                                boxShadow: [BoxShadow(blurRadius: 5,color:  Color(0xffffc478))]
                             ),
-
                             child: Column(
                               children: [
-                                Image.network("https://i2.wp.com/www.cablefree.net/wp-content/uploads/2017/05/CableFree-Wi-Fi_Logo.png?fit=2000%2C1283&ssl=1",
-                                  height: 150,
-                                  width: 250,),
 
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Text('WifiHub', style: TextStyle(fontSize: 30),),
-                                )
+                                Image(
+                                  image: AssetImage('images/theatre.png'),
+                                  height: 80,
+                                  width: 100,),
+                                Text('Theatres')
                               ],
                             ),
                           ),
                         ),
+                      ),
 
-                  ],
-                ),
-                SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: InkWell(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NearestPlace(nameOfActivity: 'Yoga Centers',),
+                                ));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black, width: 3),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(5.0) //                 <--- border radius here
+                                ),
+                                boxShadow: [BoxShadow(blurRadius: 5,color:  Color(0xffffc478))]
+                            ),
+                            child: Column(
+                              children: [
+                                Image.network("https://images.vexels.com/media/users/3/153134/isolated/preview/855e1b2ba8f42ddfcc5668c6371dba23-easy-yoga-pose-silhouette-by-vexels.png",
+                                  height: 80,
+                                  width: 80,),
+                                Text('Yoga Centres')
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: InkWell(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NearestPlace(nameOfActivity: 'Sports Club',),
+                                ));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black, width: 3),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(5.0) //                 <--- border radius here
+                                ),
+                                boxShadow: [BoxShadow(blurRadius: 5,color:  Color(0xffffc478))]
+                            ),
+                            child: Column(
+                              children: [
+                                Image.network("https://www.searchpng.com/wp-content/uploads/2019/01/Cricket-Sports-PNG-715x715.png",
+                                  height: 80,
+                                  width: 80,),
+                                Text('Sports Club'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0, left: 15),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NearestPlace(nameOfActivity: 'Bars',),
+                                ));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black, width: 3),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(5.0) //                 <--- border radius here
+                                ),
+                                boxShadow: [BoxShadow(blurRadius: 5,color: Color(0xffffc478))]
+                            ),
+                            child: Column(
+                              children: [
+                                Image.network("https://www.pngkey.com/png/full/890-8902429_pineapple-clipart-wine-clip-art-wine-cheers.png",
+                                  height: 80,
+                                  width: 80,),
+                                Text('Bars')
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0, left: 25),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NearestPlace(nameOfActivity: 'Gym',),
+                                ));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black, width: 3),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(5.0) //                 <--- border radius here
+                                ),
+                                boxShadow: [BoxShadow(blurRadius: 5,color:  Color(0xffffc478))]
+                            ),
+                            child: Column(
+                              children: [
 
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: InkWell(
-                        onTap: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NearestPlace(nameOfActivity: 'Theatres',),
-                              ));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 3),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(5.0) //                 <--- border radius here
-                              ),
-                              boxShadow: [BoxShadow(blurRadius: 5,color: Colors.grey)]
-                          ),
-                          child: Column(
-                            children: [
-                              Image.network("https://lh3.googleusercontent.com/proxy/9DWyFTBaZFdIzjwfpKFbg9IPbc81HKvD3HLMGDkkzjgaHtqQ14mP4xnPp_CUlSBGDmJka_pEB1HQv0orWEJsP-4QRniXIRins8HN1pJdi0dPHGoyhEA",
-                                height: 80,
-                                width: 80,),
-                              Text('Theatres')
-                            ],
+                                Image(
+                                  image: AssetImage('images/gym.png'),
+                                  height: 80,
+                                  width: 80,),
+                                Text('Gym')
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0, left: 25,),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NearestPlace(nameOfActivity: 'Library',),
+                                ));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black, width: 3),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(5.0) //                 <--- border radius here
+                                ),
+                                boxShadow: [BoxShadow(blurRadius: 5,color:  Color(0xffffc478))]
+                            ),
+                            child: Column(
 
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: InkWell(
-                        onTap: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NearestPlace(nameOfActivity: 'Yoga Centers',),
-                              ));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 3),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(5.0) //                 <--- border radius here
-                              ),
-                              boxShadow: [BoxShadow(blurRadius: 5,color: Colors.grey)]
-                          ),
-                          child: Column(
-                            children: [
-                              Image.network("https://images.vexels.com/media/users/3/153134/isolated/preview/855e1b2ba8f42ddfcc5668c6371dba23-easy-yoga-pose-silhouette-by-vexels.png",
-                                height: 80,
-                                width: 80,),
-                              Text('Yoga Centres')
-                            ],
+                              children: [
+                                Image.network("https://i.pinimg.com/originals/5f/fb/de/5ffbdeceb84323decd76084b2efca958.png",
+                                  height: 80,
+                                  width: 80,),
+                                Text('Library'),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: InkWell(
-                        onTap: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NearestPlace(nameOfActivity: 'Sports Club',),
-                              ));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 3),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(5.0) //                 <--- border radius here
-                              ),
-                              boxShadow: [BoxShadow(blurRadius: 5,color: Colors.grey)]
-                          ),
-                          child: Column(
-                            children: [
-                              Image.network("https://www.searchpng.com/wp-content/uploads/2019/01/Cricket-Sports-PNG-715x715.png",
-                                height: 80,
-                                width: 80,),
-                              Text('Sports Club'),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 15),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NearestPlace(nameOfActivity: 'Bars',),
-                              ));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 3),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(5.0) //                 <--- border radius here
-                              ),
-                              boxShadow: [BoxShadow(blurRadius: 5,color: Colors.grey)]
-                          ),
-                          child: Column(
-                            children: [
-                              Image.network("https://www.pngkey.com/png/full/890-8902429_pineapple-clipart-wine-clip-art-wine-cheers.png",
-                                height: 80,
-                                width: 80,),
-                              Text('Bars')
-                            ],
+                    ],
+                  ),
+                  SizedBox(height: 25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 15.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NearestPlace(nameOfActivity: 'Mental Health Checkup',),
+                                ));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black, width: 3),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(5.0) //                 <--- border radius here
+                                ),
+                                boxShadow: [BoxShadow(blurRadius: 5,color:  Color(0xffffc478))]
+                            ),
+                            child: Column(
+                                  children: [
+                                    Image.network("https://freepngimg.com/thumb/health/22905-6-health-file.png",
+                                      height: 80,
+                                      width: 80,),
+                                    Text('Mental Health Checkup')
+                                  ],
+                                ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 25),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NearestPlace(nameOfActivity: 'Gym',),
-                              ));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 3),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(5.0) //                 <--- border radius here
-                              ),
-                              boxShadow: [BoxShadow(blurRadius: 5,color: Colors.grey)]
-                          ),
-                          child: Column(
-                            children: [
-                              Image.network("https://lh3.googleusercontent.com/proxy/Ddf2ExtZI7rFjDLz-N5P3tcNg3_c8WsMdXoFH82BGA2SK3Y00HdqBUGPhuAqou01vyDhRI6mMSZ2ayP4C-oQfv2-fNzfZHXNgZZ6Z0_wZ6IzrSEkar0cWc19bPMDtv_AQgc",
-                                height: 80,
-                                width: 80,),
-                              Text('Gym')
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 25,),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NearestPlace(nameOfActivity: 'Library',),
-                              ));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 3),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(5.0) //                 <--- border radius here
-                              ),
-                              boxShadow: [BoxShadow(blurRadius: 5,color: Colors.grey)]
-                          ),
-                          child: Column(
 
-                            children: [
-                              Image.network("https://i.pinimg.com/originals/5f/fb/de/5ffbdeceb84323decd76084b2efca958.png",
-                                height: 80,
-                                width: 80,),
-                              Text('Library'),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15.0),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NearestPlace(nameOfActivity: 'Mental Health Checkup',),
-                              ));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 3),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(5.0) //                 <--- border radius here
-                              ),
-                              boxShadow: [BoxShadow(blurRadius: 5,color: Colors.grey)]
-                          ),
-                          child: Column(
-                                children: [
-                                  Image.network("https://freepngimg.com/thumb/health/22905-6-health-file.png",
-                                    height: 80,
-                                    width: 80,),
-                                  Text('Mental Health Checkup')
-                                ],
-                              ),
-                        ),
-                      ),
-                    ),
+                                         // Padding(
+                      //   padding: const EdgeInsets.only(top: 8.0, left: 18, right:24),
+                      //   child: Column(
+                      //     children: [
+                      //       Image.network("https://i2.wp.com/www.cablefree.net/wp-content/uploads/2017/05/CableFree-Wi-Fi_Logo.png?fit=2000%2C1283&ssl=1",
+                      //         height: 80,
+                      //         width: 80,),
+                      //       Text('Sport\'s Club'),
+                      //     ],
+                      //   ),
+                      // ),
+                    ],
+                  ),
 
-                                       // Padding(
-                    //   padding: const EdgeInsets.only(top: 8.0, left: 18, right:24),
-                    //   child: Column(
-                    //     children: [
-                    //       Image.network("https://i2.wp.com/www.cablefree.net/wp-content/uploads/2017/05/CableFree-Wi-Fi_Logo.png?fit=2000%2C1283&ssl=1",
-                    //         height: 80,
-                    //         width: 80,),
-                    //       Text('Sport\'s Club'),
-                    //     ],
-                    //   ),
-                    // ),
-                  ],
-                ),
-
-              ],
+                ],
+              ),
             ),
           )
 
