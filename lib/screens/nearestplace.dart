@@ -6,6 +6,9 @@ import 'package:mannkibaat/screens/listingPage.dart';
 
 class NearestPlace extends StatefulWidget {
   static const String id = 'nearestplace';
+  final String nameOfActivity;
+
+  const NearestPlace({Key key, this.nameOfActivity}) : super(key: key);
   @override
   _NearestPlaceState createState() => _NearestPlaceState();
 }
@@ -15,12 +18,71 @@ class _NearestPlaceState extends State<NearestPlace> {
   Completer<GoogleMapController> _controller = Completer();
   GoogleMapController mapController;
   static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+    target: LatLng(12.9716, 77.5946),
+    zoom: 12.9716,
   );
 
   @override
   Widget build(BuildContext context) {
+    var useArray = [];
+    var bar = [
+      {"Name" : "English Cafe", "Distance": "1.5 Km Away"},
+      {"Name" : "Delux Cafe", "Distance": "3 Km Away"},
+      {"Name" : "Super Cafe", "Distance": "4.5 Km Away"},
+    ];
+    var theatres = [
+      {"Name" : "Indox", "Distance": "1.5 Km Away"},
+      {"Name" : "Cinepolis", "Distance": "3 Km Away"},
+      {"Name" : "PVR", "Distance": "4.5 Km Away"},
+    ];
+    var wifihub = [
+      {"Name" : "Jionet", "Distance": "1.5 Km Away"},
+      {"Name" : "Airtel Wifi", "Distance": "3 Km Away"},
+      {"Name" : "BSNL Wifi", "Distance": "4.5 Km Away"},
+    ];
+    var yogaCenters = [
+      {"Name" : "Mitali Yoga", "Distance": "1.5 Km Away"},
+      {"Name" : "Surya Fitness", "Distance": "3 Km Away"},
+      {"Name" : "Rohan Yoga Classes", "Distance": "4.5 Km Away"},
+    ];
+    var cricketClub = [
+      {"Name" : "Rohan Academy", "Distance": "1.5 Km Away"},
+      {"Name" : "Rahul Academy", "Distance": "3 Km Away"},
+      {"Name" : "Satwik Sport's Academy", "Distance": "4.5 Km Away"},
+    ];
+    var gym = [
+      {"Name" : "O3 Gym", "Distance": "1.5 Km Away"},
+      {"Name" : "Raju Gym", "Distance": "3 Km Away"},
+      {"Name" : "Super Body", "Distance": "4.5 Km Away"},
+    ];
+    var library = [
+      {"Name" : "National Library", "Distance": "1.5 Km Away"},
+      {"Name" : "Shyam Library", "Distance": "3 Km Away"},
+      {"Name" : "Gupta Library", "Distance": "4.5 Km Away"},
+    ];
+    var mentalhealth = [
+      {"Name" : "Avinash Pharmacy", "Distance": "1.5 Km Away"},
+      {"Name" : "Raju Clinic", "Distance": "3 Km Away"},
+      {"Name" : "Gk Clinic", "Distance": "4.5 Km Away"},
+    ];
+    if(widget.nameOfActivity == 'WifiHub'){
+      useArray = wifihub;
+    } else if(widget.nameOfActivity == 'Theatres'){
+      useArray = theatres;
+    }
+    else if(widget.nameOfActivity == 'Yoga Centers'){
+      useArray = yogaCenters;
+    }else if(widget.nameOfActivity == 'Sports Club'){
+      useArray = cricketClub;
+    }else if(widget.nameOfActivity == 'Bars'){
+      useArray = bar;
+    }else if(widget.nameOfActivity == 'Gym'){
+      useArray = gym;
+    }else if(widget.nameOfActivity == 'Library'){
+      useArray = library;
+    }else if(widget.nameOfActivity == 'Mental Health Checkup'){
+      useArray = mentalhealth;
+    }
     return WillPopScope(
       onWillPop: () {
         Navigator.pushNamedAndRemoveUntil(context, ListingPage.id, (route) => false);
@@ -43,7 +105,7 @@ class _NearestPlaceState extends State<NearestPlace> {
               right: 0,
               bottom: 0,
               child: Container(
-                height: 240,
+                height: 260,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(25)),
@@ -63,6 +125,28 @@ class _NearestPlaceState extends State<NearestPlace> {
                 child: Column(
                   children: [
                     SizedBox(height: 5,),
+                    Text("${widget.nameOfActivity}", style: TextStyle(color: Colors.orange, fontSize: 20, ),),
+
+                    ListView.separated(
+                      shrinkWrap: true,
+                      separatorBuilder: (BuildContext context, int index) =>
+                          Divider(),
+                      itemCount: 3,
+                      itemBuilder: (context, int index) {
+
+
+                        return Container(
+
+                            child: ListTile(
+                              title: Text(
+                                "${index+1}. ${useArray[index]["Name"]}",
+                              ),
+                              trailing: Text(
+                                  useArray[index]["Distance"], style: TextStyle(color: Colors.blue),
+                              ),
+                            ));
+                      },
+                    )
 
                   ],
                 ),

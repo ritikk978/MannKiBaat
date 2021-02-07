@@ -5,9 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:mannkibaat/screens/homepage.dart';
 import 'package:mannkibaat/screens/registerationpage.dart';
 import 'package:mannkibaat/widgets/ProgressDialog.dart';
-import 'file:///C:/Users/Ritik/AndroidStudioProjects/mannkibaat/lib/brand_colors.dart';
+import 'package:mannkibaat/brand_colors.dart';
 import 'package:mannkibaat/widgets/Button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'diarypage.dart';
 
 class LoginPage extends StatefulWidget {
   static const String id = 'login';
@@ -87,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
       userRef.once().then((DataSnapshot snapshot) {
         if (snapshot.value != null) {
           Navigator.pushNamedAndRemoveUntil(
-              context, HomePage.id, (route) => false);
+              context, DiaryPage.id, (route) => false);
         }
       });
       //Verify Login

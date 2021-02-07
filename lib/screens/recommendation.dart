@@ -1,9 +1,13 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conditional_rendering/conditional.dart';
 import 'package:mannkibaat/BarGraph/calue_charts.dart';
 import 'package:mannkibaat/BarGraph/graph_var.dart';
 import 'package:mannkibaat/screens/diarypage.dart';
 import 'package:mannkibaat/widgets/Button.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+
+import 'nearestplace.dart';
 
 class RecommendationPage extends StatefulWidget {
   static const String id = 'recommendationpage';
@@ -18,13 +22,13 @@ class RecommendationPage extends StatefulWidget {
 class _RecommendationPageState extends State<RecommendationPage> {
   var Activities = [
     {"Name": "Bars", "Description": "Ease your weight"},
-    {"Name": "Yoga Centres", "Description": "Ease your weight"},
+    {"Name": "Yoga Centers", "Description": "Ease your weight"},
     {"Name": "Theatres", "Description": "Ease your weight"},
-    {"Name": "Sport's Club", "Description": "Ease your weight"},
+    {"Name": "Sports Club", "Description": "Ease your weight"},
     {"Name": "Gym", "Description": "Ease your weight"},
     {"Name": "Library", "Description": "Ease your weight"},
     {"Name": "Mental Health Checkup", "Description": "Ease your weight"},
-    {"Name": "Wifi Hub", "Description": "Ease your weight"}
+    {"Name": "WifiHub", "Description": "Ease your weight"}
   ];
   var response;
 
@@ -33,6 +37,7 @@ class _RecommendationPageState extends State<RecommendationPage> {
     // TODO: implement initState
     super.initState();
     response = widget.response;
+    print('$response');
   }
 
   var shareYourDay = TextEditingController();
@@ -42,17 +47,26 @@ class _RecommendationPageState extends State<RecommendationPage> {
 
   @override
   Widget build(BuildContext context) {
+    var array = response["Response2"]["KeyPhrases"];
+    bool help = false;
+    double score = 0;
+    for(int i=0; i<array.length; i++){
+      if(array[i]["Text"]=="connectivity issues" || array[i]["Text"]=="wi-fi connectivity issues" || array[i]["Text"]=="Yaar Connectivity"){
+        help = true;
+        score = array[i]["Score"];
+      }
+    }
     var Recommend = [];
     if (response["Response1"]["SentimentScore"]["Positive"] > 0.5) {
       Recommend = [Activities[0], Activities[2], Activities[5]];
     } else if (response["Response1"]["SentimentScore"]["Negative"] > 0.5) {
-      Recommend = [Activities[1], Activities[2], Activities[3]];
+      Recommend = [Activities[1], Activities[2], Activities[3]];//3
     } else if (response["Response1"]["SentimentScore"]["Neutral"] > 0.5) {
       Recommend = [Activities[2], Activities[3], Activities[5]];
     } else if (response["Response1"]["SentimentScore"]["Mixed"] > 0.5) {
       Recommend = [Activities[0], Activities[1], Activities[4]];
     } else{
-      Recommend = [Activities[2], Activities[5], Activities[7]];
+      Recommend = [Activities[2], Activities[5], Activities[3]];
     }
     final List<GraphVar> data = [
       GraphVar(
@@ -84,7 +98,23 @@ class _RecommendationPageState extends State<RecommendationPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children: <Widget>[
+                Conditional.single(
+                  context: context,
+                  conditionBuilder: (BuildContext context) => help == true,
+                  widgetBuilder: (BuildContext context) => Flushbar(
+                    flushbarPosition: FlushbarPosition.TOP,
+                    title: "Content Analysis",
+
+                    message: "Based on your content you might want to visit Wifi Hub\n\nCONFIDENCE SCORE: ${score.toStringAsFixed(7)}",
+                    duration: Duration(seconds: 3),
+                    dismissDirection: 	FlushbarDismissDirection.VERTICAL,
+                    isDismissible: true,
+                  ),
+                  fallbackBuilder: (BuildContext context) => Text('We give what you want'),
+                ),
+
+
                 SizedBox(
                   height: 20,
                 ),
@@ -142,13 +172,26 @@ class _RecommendationPageState extends State<RecommendationPage> {
                       Divider(),
                   itemCount: 3,
                   itemBuilder: (context, int index) {
-                    return Container(
-                        color: Colors.yellow,
-                        child: ListTile(
-                          title: Text(
-                            Recommend[index]['Name'],
-                          ),
-                        ));
+                    bool check;
+                    if(Recommend[index]['Name']== "Wifi Hub"){
+                      check = true;
+                    }else check=false;
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NearestPlace(nameOfActivity: Recommend[index]['Name'],),
+                            ));
+                      },
+                      child: Container(
+                          color: check?Colors.red : Colors.yellow,
+                          child: ListTile(
+                            title: Text(
+                              Recommend[index]['Name'],
+                            ),
+                          )),
+                    );
                   },
                 )
               ],

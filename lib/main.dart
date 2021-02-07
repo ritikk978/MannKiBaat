@@ -75,7 +75,6 @@ class _MyAppState extends State<MyApp> {
       routes: {
         RegisterationPage.id: (context) => RegisterationPage(),
         LoginPage.id: (context) => LoginPage(),
-        HomePage.id: (context) => HomePage(),
         ListingPage.id: (context) => ListingPage(),
         NearestPlace.id: (context) => NearestPlace(),
         DiaryPage.id: (context) => DiaryPage(),

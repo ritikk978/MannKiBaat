@@ -3,8 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mannkibaat/screens/diarypage.dart';
 import 'package:mannkibaat/screens/homepage.dart';
-import 'file:///C:/Users/Ritik/AndroidStudioProjects/mannkibaat/lib/brand_colors.dart';
+import 'package:mannkibaat/brand_colors.dart';
 import 'package:mannkibaat/screens/loginpage.dart';
 import 'package:mannkibaat/widgets/ProgressDialog.dart';
 import 'package:mannkibaat/widgets/Button.dart';
@@ -93,7 +94,7 @@ class _RegisterationPageState extends State<RegisterationPage> {
 
       newUserRef.set(userMap);
 
-      Navigator.pushNamedAndRemoveUntil(context, HomePage.id, (route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, DiaryPage.id, (route) => false);
       showSnackBar('Registration Successful');
       return;
     }
