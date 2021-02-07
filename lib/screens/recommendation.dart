@@ -50,12 +50,7 @@ class _RecommendationPageState extends State<RecommendationPage> {
     var array = response["Response2"]["KeyPhrases"];
     bool help = false;
     double score = 0;
-    for(int i=0; i<array.length; i++){
-      if(array[i]["Text"]=="connectivity issues" || array[i]["Text"]=="wi-fi connectivity issues" || array[i]["Text"]=="Yaar Connectivity"){
-        help = true;
-        score = array[i]["Score"];
-      }
-    }
+
     var Recommend = [];
     if (response["Response1"]["SentimentScore"]["Positive"] > 0.5) {
       Recommend = [Activities[0], Activities[2], Activities[5]];
@@ -68,6 +63,7 @@ class _RecommendationPageState extends State<RecommendationPage> {
     } else{
       Recommend = [Activities[2], Activities[5], Activities[3]];
     }
+
     final List<GraphVar> data = [
       GraphVar(
           Sentiments: "Positive",
@@ -86,6 +82,26 @@ class _RecommendationPageState extends State<RecommendationPage> {
           Value: response["Response1"]["SentimentScore"]["Mixed"] * 10,
           barColor: charts.ColorUtil.fromDartColor(Colors.yellow)),
     ];
+    for(int i=0; i<array.length; i++){
+      if(array[i]["Text"]=="connectivity issues" || array[i]["Text"]=="wi-fi connectivity issues" || array[i]["Text"]=="Yaar Connectivity"){
+        help = true;
+        score = array[i]["Score"];
+        Recommend[0] = Activities[7];
+      }
+    }
+
+    Widget emotionImage(){
+      if(response["Response1"]["Sentiment"] == 'POSITIVE'){
+        return Image.network('https://i.pinimg.com/originals/23/83/b8/2383b8c0a126d1d6e45c69e1f1d8c835.png', height: 300, width: 300,);
+      } else if (response["Response1"]["Sentiment"] == 'NEGATIVE'){
+        return Image.network('https://i.pinimg.com/originals/09/fc/3b/09fc3ba997d72105b72c1463e2e2ae20.png', height: 300, width: 300,);
+      } else if (response["Response1"]["Sentiment"] == 'MIXED') {
+            return Image.network('https://www.clipartkey.com/mpngs/m/42-428855_confused-emoji-with-transparent-background.png', height: 300, width: 300,);
+      } else {
+          return Image.network('https://cdn.shopify.com/s/files/1/1061/1924/products/Neutral_Emoji_icon_9f1cc93a-f984-4b6c-896e-d24a643e4c28_large.png?v=1571606091', height: 300, width: 200,);
+        }
+      }
+
     return WillPopScope(
         onWillPop: () {
           Navigator.pushNamedAndRemoveUntil(
@@ -122,6 +138,8 @@ class _RecommendationPageState extends State<RecommendationPage> {
                   "Check Your MOOD",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
+                Flexible(
+                    child: emotionImage(),),
                 SizedBox(
                   height: 20,
                 ),
@@ -173,8 +191,10 @@ class _RecommendationPageState extends State<RecommendationPage> {
                   itemCount: 3,
                   itemBuilder: (context, int index) {
                     bool check;
-                    if(Recommend[index]['Name']== "Wifi Hub"){
+                    if(Recommend[index]['Name']== "WifiHub"){
                       check = true;
+                      // Recommend[0] = Activities[7];
+
                     }else check=false;
                     return InkWell(
                       onTap: (){
@@ -190,6 +210,7 @@ class _RecommendationPageState extends State<RecommendationPage> {
                             title: Text(
                               Recommend[index]['Name'],
                             ),
+                            trailing: check? Text('Book Now'): Icon(Icons.location_pin, color: Colors.black, size: 30,)
                           )),
                     );
                   },

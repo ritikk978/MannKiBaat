@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mannkibaat/screens/listingPage.dart';
 
@@ -24,6 +25,9 @@ class _NearestPlaceState extends State<NearestPlace> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context,
+        designSize: Size(414, 812), allowFontScaling: false);
+
     var useArray = [];
     var bar = [
       {"Name" : "English Cafe", "Distance": "1.5 Km Away"},
@@ -36,9 +40,9 @@ class _NearestPlaceState extends State<NearestPlace> {
       {"Name" : "PVR", "Distance": "4.5 Km Away"},
     ];
     var wifihub = [
-      {"Name" : "Jionet", "Distance": "1.5 Km Away"},
-      {"Name" : "Airtel Wifi", "Distance": "3 Km Away"},
-      {"Name" : "BSNL Wifi", "Distance": "4.5 Km Away"},
+      {"Name" : "Deluxe Wifi Hub", "Distance": "1.5 Km Away"},
+      {"Name" : "Kundun Wifi Hub", "Distance": "3 Km Away"},
+      {"Name" : "Ramesh Wifi Hub", "Distance": "4.5 Km Away"},
     ];
     var yogaCenters = [
       {"Name" : "Mitali Yoga", "Distance": "1.5 Km Away"},
@@ -88,71 +92,77 @@ class _NearestPlaceState extends State<NearestPlace> {
         Navigator.pushNamedAndRemoveUntil(context, ListingPage.id, (route) => false);
       },
       child: Scaffold(
-        body: Stack(
-          children: [
-            GoogleMap(
-              mapType: MapType.normal,
-              myLocationButtonEnabled: true,
-              initialCameraPosition: _kGooglePlex,
-              onMapCreated: (GoogleMapController controller){
-                _controller.complete(controller);
-                mapController = controller;
-              },
-            ),
-            
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Container(
-                height: 260,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(25)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 15.0,
-                      spreadRadius: 0.5,
-                      offset: Offset(
-                        0.7,
-                        0.7,
-                      )
-                    )
-                  ],
-
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(height: 5,),
-                    Text("${widget.nameOfActivity}", style: TextStyle(color: Colors.orange, fontSize: 20, ),),
-
-                    ListView.separated(
-                      shrinkWrap: true,
-                      separatorBuilder: (BuildContext context, int index) =>
-                          Divider(),
-                      itemCount: 3,
-                      itemBuilder: (context, int index) {
-
-
-                        return Container(
-
-                            child: ListTile(
-                              title: Text(
-                                "${index+1}. ${useArray[index]["Name"]}",
-                              ),
-                              trailing: Text(
-                                  useArray[index]["Distance"], style: TextStyle(color: Colors.blue),
-                              ),
-                            ));
-                      },
-                    )
-
-                  ],
-                ),
+        body: SafeArea(
+          child: Stack(
+            children: [
+              GoogleMap(
+                mapType: MapType.normal,
+                myLocationButtonEnabled: true,
+                initialCameraPosition: _kGooglePlex,
+                onMapCreated: (GoogleMapController controller){
+                  _controller.complete(controller);
+                  mapController = controller;
+                },
               ),
-            )
-          ],
+
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  height: 260.h,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(25)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 15.0,
+                        spreadRadius: 0.5,
+                        offset: Offset(
+                          0.7,
+                          0.7,
+                        )
+                      )
+                    ],
+
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 5.h,),
+                      Text("${widget.nameOfActivity}", style: TextStyle(color: Colors.orange, fontSize: 20, ),),
+
+                      ListView.separated(
+                        shrinkWrap: true,
+                        separatorBuilder: (BuildContext context, int index) =>
+                            Divider(),
+                        itemCount: 3,
+                        itemBuilder: (context, int index) {
+
+
+                          return Container(
+
+                              child: ListTile(
+                                title: Text(
+                                  "${index+1}. ${useArray[index]["Name"]}",
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
+                                trailing: Text(
+                                    useArray[index]["Distance"], style: TextStyle(color: Colors.blue),
+
+                                ),
+                              ));
+                        },
+                      )
+
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

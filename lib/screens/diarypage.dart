@@ -153,7 +153,7 @@ class _DiaryPageState extends State<DiaryPage> {
             elevation: 0,
             title: Center(
               child: Text(
-                'Diary Entry',
+                'Smart Diary',
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -161,18 +161,52 @@ class _DiaryPageState extends State<DiaryPage> {
               ),
             ),
             actions: <Widget>[
+              GestureDetector(
+                onTap: (){
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, ListingPage.id, (route) => false);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Align(
+                              alignment: Alignment.center,
+          child: Text('Listing', style: TextStyle(color: Colors.black))),
+                        ),
+
+                        Padding(
+                            padding: EdgeInsets.only(right: 10.0),
+                            child: Center(
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.blue,
+
+                                          blurRadius: 1,
+                                        ),
+                                      ],
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Icon(Icons.location_pin, color: Colors.black, size: 30,),
+                                    )))),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
 
 
-              Padding(
-                  padding: EdgeInsets.only(right: 20.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, ListingPage.id, (route) => false);
-                    },
-                    child: Center(
-                        child: Icon(Icons.location_pin, color: Colors.black, size: 30,)),
-                  )),
             ],
           ),
           resizeToAvoidBottomInset: false,
@@ -197,11 +231,19 @@ class _DiaryPageState extends State<DiaryPage> {
                         controller: _controller,
                         maxLines: 13,
                         decoration: InputDecoration(
-                          labelText: 'Dear Diary',
+                          // labelText: 'Dear Diary',
+
+                          hintText: 'Speak your mind or type it out...you can also try the Previous Entries. Then just tap on "Get me Something" and we will get it for you:)',
                           border: OutlineInputBorder(
+
                               borderRadius:
                               BorderRadius.all(Radius.circular(5.0))),
+                          hoverColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+
+
                         ),
+
                       ),
                     ),
                     height: 300,
@@ -242,13 +284,13 @@ class _DiaryPageState extends State<DiaryPage> {
                 SizedBox(height: 5,),
 
                 RaisedButton(
-                  child: Text('Get a Life', style: TextStyle(color: Colors.white),),
+                  child: Text('Get me something', style: TextStyle(color: Colors.white),),
                   color: Colors.red,
                     onPressed: () async {
                       showDialog(
                           barrierDismissible: false,
                           context: context,
-                          builder: (BuildContext context) => ProgressDialog(status: 'Getting u a life...',));
+                          builder: (BuildContext context) => ProgressDialog(status: "Something interesting's cooking",));
                       check(_controller.text);
                     }
                 ),
@@ -267,85 +309,90 @@ class _DiaryPageState extends State<DiaryPage> {
                 SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: (){
-                        display(now.day, 0);
-                      },
-                      child: Container(
+                Align(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: (){
+                          display(now.day, 0);
+                        },
+                        child: Container(
 
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            image: DecorationImage(
-                                image: AssetImage('images/stickyNotes.png')
-                            )
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              image: DecorationImage(
+                                  image: AssetImage('images/stickyNotes.png')
+                              )
+                          ),
+                          height: 90,
+                          width: 110,
+                          child: Center(
+                              child: Text(
+                                '${now.day} Feb',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 18),
+                              )),
                         ),
-                        height: 90,
-                        width: 110,
-                        child: Center(
+                      ),
+                      InkWell(
+                        onTap: (){
+                          display(now.day-1, 1);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              image: DecorationImage(
+                                  image: AssetImage('images/stickyNotes.png')
+                              )
+                          ),
+                          height: 90,
+                          width: 110,
+                          child: Center(
                             child: Text(
-                              '${now.day} Feb',
+                              '${now.day - 1} Feb',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                   fontSize: 18),
-                            )),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: (){
-                        display(now.day-1, 1);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            image: DecorationImage(
-                                image: AssetImage('images/stickyNotes.png')
-                            )
-                        ),
-                        height: 90,
-                        width: 110,
-                        child: Center(
-                          child: Text(
-                            '${now.day - 1} Feb',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 18),
+                            ),
                           ),
                         ),
                       ),
-                    ),
 
-                    InkWell(
-                      onTap: (){
-                        display(now.day-2, 2);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            image: DecorationImage(
-                                image: AssetImage('images/stickyNotes.png')
-                            )
-                        ),
-                        height: 90,
-                        width: 110,
-                        child: Center(
-                          child: Text('${now.day - 2} Feb',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 18)),
+                      InkWell(
+                        onTap: (){
+                          display(now.day-2, 2);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              image: DecorationImage(
+                                  image: AssetImage('images/stickyNotes.png')
+                              )
+                          ),
+                          height: 90,
+                          width: 110,
+                          child: Center(
+                            child: Text('${now.day - 2} Feb',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 18)),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
                       onTap: (){
