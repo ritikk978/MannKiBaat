@@ -232,11 +232,18 @@ class _DiaryPageState extends State<DiaryPage> {
                         maxLines: 13,
                         decoration: InputDecoration(
                           // labelText: 'Dear Diary',
+
                           hintText: 'Speak your mind or type it out...you can also try the Previous Entries. Then just tap on "Get me Something" and we will get it for you:)',
                           border: OutlineInputBorder(
+
                               borderRadius:
                               BorderRadius.all(Radius.circular(5.0))),
+                          hoverColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+
+
                         ),
+
                       ),
                     ),
                     height: 300,

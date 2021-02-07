@@ -117,28 +117,33 @@ class _ListingPageState extends State<ListingPage> {
                 padding: const EdgeInsets.all(4.0),
                 child: Align(
                   alignment: Alignment.center,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xffffc478),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 6.0, right: 2),
-                          child: Icon(
-                            Icons.book,
-                            color: Colors.black,
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, DiaryPage.id);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xffffc478),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 6.0, right: 2),
+                            child: Icon(
+                              Icons.book,
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Align(
-                              alignment: Alignment.center,
-                              child: Text('Smart Diary', style: TextStyle(color: Colors.black),)),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Align(
+                                alignment: Alignment.center,
+                                child: Text('Smart Diary', style: TextStyle(color: Colors.black),)),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -230,7 +230,7 @@ class _RegisterationPageState extends State<RegisterationPage> {
                               return;
                             }
                             if(passwordController.text.length<8){
-                              showSnackBar('Please provide a valid Password');
+                              showSnackBar('Minimum password length is 8');
                               return;
                             }
                             registerUser();
